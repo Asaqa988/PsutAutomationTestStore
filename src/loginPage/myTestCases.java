@@ -111,6 +111,7 @@ public class myTestCases {
 		agreebox.click();
 
 		ContinueButton.click();
+		sdlakldj
     
 		     // new update to be continue    
 		 
