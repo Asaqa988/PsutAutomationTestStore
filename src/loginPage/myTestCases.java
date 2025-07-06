@@ -111,7 +111,12 @@ public class myTestCases {
 		agreebox.click();
 
 		ContinueButton.click();
-
+    
+		     // new update to be continue    
+		 
+		 
+		 
+		
 	}
 
 }
