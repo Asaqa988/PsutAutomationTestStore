@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -25,7 +26,7 @@ public class myTestCases {
 	}
 
 	@Test(priority = 1)
-	public void Signup() {
+	public void Signup() throws InterruptedException {
 
 		driver.navigate().to(SignupPage);
 
@@ -44,26 +45,23 @@ public class myTestCases {
 		WebElement loginNameInput = driver.findElement(By.id("AccountFrm_loginname"));
 		WebElement passwordInput = driver.findElement(By.id("AccountFrm_password"));
 		WebElement passwordConfirmInput = driver.findElement(By.id("AccountFrm_confirm"));
-
-		
-		
-		
-		
+		WebElement agreebox = driver.findElement(By.id("AccountFrm_agree"));
+		WebElement ContinueButton = driver.findElement(By.cssSelector("button[title='Continue']"));
+		WebElement CountrySelect = driver.findElement(By.id("AccountFrm_country_id"));
+		WebElement StateSelect = driver.findElement(By.id("AccountFrm_zone_id"));
 		// data
 
-		String[] fristNames = { "amira", "rogina", "dana", "mais", "dareen"};
+		String[] fristNames = { "amira", "rogina", "dana", "mais", "dareen" };
 		int randomIndexForFirstName = rand.nextInt(fristNames.length);
-		
-		String randomFirstName = fristNames[randomIndexForFirstName]; 
-	
-		
-		String[] lastNames = {"alaa","saif","abduallah","hamzeh", "marwan", "abedalrahman","omar"};
+
+		String randomFirstName = fristNames[randomIndexForFirstName];
+
+		String[] lastNames = { "alaa", "saif", "abduallah", "hamzeh", "marwan", "abedalrahman", "omar" };
 		int randomIndexForLastName = rand.nextInt(lastNames.length);
-		String randomLastName = lastNames[randomIndexForLastName]; 
-		
-		
+		String randomLastName = lastNames[randomIndexForLastName];
+
 		int randomNumberForTheEmail = rand.nextInt(7000);
-		String email = randomFirstName+randomLastName+randomNumberForTheEmail+"@gmail.com";
+		String email = randomFirstName + randomLastName + randomNumberForTheEmail + "@gmail.com";
 		String telephone = "9624545455";
 		String fax = "9624545755";
 		String company = "abc";
@@ -73,13 +71,8 @@ public class myTestCases {
 		String PostalCode = "3817";
 		String password = "Test@1234";
 
-		
-		
 		// actions
-		
-		
-		
-		
+
 		firstnameInput.sendKeys(randomFirstName);
 		lastNameInput.sendKeys(randomLastName);
 		emailInput.sendKeys(email);
@@ -89,11 +82,36 @@ public class myTestCases {
 		address1Input.sendKeys(address1);
 		address2Input.sendKeys(address2);
 		cityInput.sendKeys(city);
+
+		Select mySelectForTheCountry = new Select(CountrySelect);
+
+		mySelectForTheCountry.selectByVisibleText("Jordan");
+
+		Thread.sleep(1000);
+
+		;
+
+		int numberOfOptions = StateSelect.findElements(By.tagName("option")).size();
+
+		System.out.println(numberOfOptions);
+
+//		Select mySelectForTheState = new Select(StateSelect);
+//		int randomStateIndex = rand.nextInt(1,numberOfOptions);
+//		mySelectForTheState.selectByIndex(randomStateIndex);
+
+		Select mySelectForTheState = new Select(StateSelect);
+		int randomStateIndex = rand.nextInt(1, numberOfOptions);
+		mySelectForTheState.selectByValue("1705");
+
 		PostalCodeInput.sendKeys(PostalCode);
-		loginNameInput.sendKeys(randomFirstName+randomLastName+randomNumberForTheEmail);
-		
+		loginNameInput.sendKeys(randomFirstName + randomLastName + randomNumberForTheEmail);
+
 		passwordInput.sendKeys(password);
 		passwordConfirmInput.sendKeys(password);
+		agreebox.click();
+
+		ContinueButton.click();
+
 	}
 
 }
