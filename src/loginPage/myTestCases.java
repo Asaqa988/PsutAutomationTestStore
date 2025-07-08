@@ -1,5 +1,6 @@
 package loginPage;
 
+import java.util.List;
 import java.util.Random;
 
 import org.openqa.selenium.By;
@@ -18,6 +19,10 @@ public class myTestCases {
 
 	Random rand = new Random();
 
+	String TheUserName;
+
+	String ThePassword = "Test@1234";
+
 	@BeforeTest
 	public void mySetup() {
 		driver.get(theURL);
@@ -25,7 +30,7 @@ public class myTestCases {
 		driver.manage().window().maximize();
 	}
 
-	@Test(priority = 1)
+	@Test(priority = 1, enabled = true)
 	public void Signup() throws InterruptedException {
 
 		driver.navigate().to(SignupPage);
@@ -69,9 +74,10 @@ public class myTestCases {
 		String address2 = "Amman ShafaBadran";
 		String city = "Amman";
 		String PostalCode = "3817";
-		String password = "Test@1234";
 
 		// actions
+
+		TheUserName = randomFirstName + randomLastName + randomNumberForTheEmail;
 
 		firstnameInput.sendKeys(randomFirstName);
 		lastNameInput.sendKeys(randomLastName);
@@ -85,9 +91,13 @@ public class myTestCases {
 
 		Select mySelectForTheCountry = new Select(CountrySelect);
 
-		mySelectForTheCountry.selectByVisibleText("Jordan");
+		int TotalCountries = CountrySelect.findElements(By.tagName("option")).size();
 
-		Thread.sleep(1000);
+		int randomCountry = rand.nextInt(1, TotalCountries);
+
+		mySelectForTheCountry.selectByIndex(randomCountry);
+
+		Thread.sleep(2000);
 
 		;
 
@@ -95,29 +105,86 @@ public class myTestCases {
 
 		System.out.println(numberOfOptions);
 
-//		Select mySelectForTheState = new Select(StateSelect);
-//		int randomStateIndex = rand.nextInt(1,numberOfOptions);
-//		mySelectForTheState.selectByIndex(randomStateIndex);
-
 		Select mySelectForTheState = new Select(StateSelect);
 		int randomStateIndex = rand.nextInt(1, numberOfOptions);
-		mySelectForTheState.selectByValue("1705");
+		mySelectForTheState.selectByIndex(randomStateIndex);
+
+//		Select mySelectForTheState = new Select(StateSelect);
+//		int randomStateIndex = rand.nextInt(1, numberOfOptions);
+//		mySelectForTheState.selectByValue("1705");
 
 		PostalCodeInput.sendKeys(PostalCode);
-		loginNameInput.sendKeys(randomFirstName + randomLastName + randomNumberForTheEmail);
+		loginNameInput.sendKeys(TheUserName);
 
-		passwordInput.sendKeys(password);
-		passwordConfirmInput.sendKeys(password);
+		passwordInput.sendKeys(ThePassword);
+		passwordConfirmInput.sendKeys(ThePassword);
 		agreebox.click();
 
 		ContinueButton.click();
-		sdlakldj
-    
-		     // new update to be continue    
-		 
-		 
-		 
+
+		Thread.sleep(3000);
+
+	}
+
+	@Test(priority = 2, enabled = true)
+	public void Logout() throws InterruptedException {
+
+		WebElement LogoutButton = driver.findElement(By.linkText("Logoff"));
+
+		LogoutButton.click();
+
+		Thread.sleep(1000);
+
+		WebElement continueButton = driver.findElement(By.linkText("Continue"));
+		continueButton.click();
+	}
+
+	@Test(priority = 3, enabled = true)
+	public void Login() {
+		WebElement LoginAndRegisterButton = driver.findElement(By.partialLinkText("Login or register"));
+
+		LoginAndRegisterButton.click();
+
+		WebElement Loginname = driver.findElement(By.id("loginFrm_loginname"));
+		WebElement passwordInput = driver.findElement(By.id("loginFrm_password"));
+		Loginname.sendKeys(TheUserName);
+		passwordInput.sendKeys(ThePassword);
+
+		WebElement LoginButton = driver.findElement(By.xpath("//button[@title='Login']"));
+		LoginButton.click();
+
+	}
+
+	@Test(priority = 4,invocationCount = 1)
+
+	public void AddtoCart() throws InterruptedException {
+		driver.navigate().to(theURL);
+
+		Thread.sleep(1000);
+		List<WebElement> theListOfItems = driver.findElements(By.className("prdocutname")); 
+
+		int TotalNumberOfItems = theListOfItems.size();
+
+		System.out.println(TotalNumberOfItems);
 		
+		int RandomItemIndex = rand.nextInt(2);
+		
+		theListOfItems.get(RandomItemIndex).click();;
+		
+		Thread.sleep(3000);
+		
+		if(driver.getPageSource().contains("Out of Stock")) {
+			driver.navigate().back();
+			
+			System.out.println("sorry the item out of the stock");
+		}else {
+			System.out.println(" the item is available");
+
+		}
+		
+		
+		
+
 	}
 
 }

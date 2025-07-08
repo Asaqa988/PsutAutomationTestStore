@@ -5,7 +5,7 @@
     <classes>
       <class name="loginPage.myTestCases">
         <methods>
-          <include name="Signup"/>
+          <include name="AddtoCart"/>
           <include name="mySetup"/>
         </methods>
       </class> <!-- loginPage.myTestCases -->
