@@ -1,29 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="1" total="4" passed="3" failed="0" skipped="0">
+<testng-results ignored="0" total="4" passed="4" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-07-14T21:17:54 EET" name="Default suite" finished-at="2025-07-14T21:18:12 EET" duration-ms="17718">
+  <suite started-at="2025-07-16T20:14:54 EET" name="Default suite" finished-at="2025-07-16T20:15:22 EET" duration-ms="27754">
     <groups>
     </groups>
-    <test started-at="2025-07-14T21:17:54 EET" name="Default test" finished-at="2025-07-14T21:18:12 EET" duration-ms="17718">
-      <class name="loginPage.myTestCases">
-        <test-method is-config="true" signature="mySetup()[pri:0, instance:loginPage.myTestCases@158a3b2e]" started-at="2025-07-14T21:17:54 EET" name="mySetup" finished-at="2025-07-14T21:17:56 EET" duration-ms="1992" status="PASS">
+    <test started-at="2025-07-16T20:14:54 EET" name="Default test" finished-at="2025-07-16T20:15:22 EET" duration-ms="27754">
+      <class name="tests.UserTests">
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.UserTests@776aec5c]" started-at="2025-07-16T20:14:54 EET" name="setup" finished-at="2025-07-16T20:14:58 EET" duration-ms="4276" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- mySetup -->
-        <test-method signature="Signup()[pri:1, instance:loginPage.myTestCases@158a3b2e]" started-at="2025-07-14T21:17:56 EET" name="Signup" finished-at="2025-07-14T21:18:07 EET" duration-ms="10247" status="PASS">
+        </test-method> <!-- setup -->
+        <test-method signature="testSignup()[pri:1, instance:tests.UserTests@776aec5c]" started-at="2025-07-16T20:14:58 EET" name="testSignup" finished-at="2025-07-16T20:15:05 EET" duration-ms="6649" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- Signup -->
-        <test-method signature="Logout()[pri:2, instance:loginPage.myTestCases@158a3b2e]" started-at="2025-07-14T21:18:07 EET" name="Logout" finished-at="2025-07-14T21:18:09 EET" duration-ms="1917" status="PASS">
+        </test-method> <!-- testSignup -->
+        <test-method signature="testLogout()[pri:2, instance:tests.UserTests@776aec5c]" started-at="2025-07-16T20:15:05 EET" name="testLogout" finished-at="2025-07-16T20:15:07 EET" duration-ms="2018" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- Logout -->
-        <test-method signature="Login()[pri:3, instance:loginPage.myTestCases@158a3b2e]" started-at="2025-07-14T21:18:09 EET" name="Login" finished-at="2025-07-14T21:18:12 EET" duration-ms="3476" status="PASS">
+        </test-method> <!-- testLogout -->
+        <test-method signature="testLogin()[pri:3, instance:tests.UserTests@776aec5c]" started-at="2025-07-16T20:15:07 EET" name="testLogin" finished-at="2025-07-16T20:15:10 EET" depends-on-methods="tests.UserTests.testSignup" duration-ms="3338" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- Login -->
-      </class> <!-- loginPage.myTestCases -->
+        </test-method> <!-- testLogin -->
+        <test-method signature="testAddToCartAndCheckout()[pri:4, instance:tests.UserTests@776aec5c]" started-at="2025-07-16T20:15:10 EET" name="testAddToCartAndCheckout" finished-at="2025-07-16T20:15:21 EET" duration-ms="10994" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testAddToCartAndCheckout -->
+        <test-method is-config="true" signature="teardown()[pri:0, instance:tests.UserTests@776aec5c]" started-at="2025-07-16T20:15:21 EET" name="teardown" finished-at="2025-07-16T20:15:22 EET" duration-ms="359" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- teardown -->
+      </class> <!-- tests.UserTests -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
